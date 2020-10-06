@@ -3,8 +3,27 @@
 
 <head>
   <meta charset="utf-8">
-  <title>My Planish</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+  <title>My Planish - Главная</title>
   <style type="text/css">
+    body {
+      min-width: 1160px;
+      margin: 0;
+      padding: 0;
+      font-family: "Work Sans", "Arial", sans-serif;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      color: #151C22;
+    }
+
+    .container {
+      width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 40px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
@@ -17,7 +36,7 @@
     }
 
     li:not(:last-child) {
-      margin-right: 25px;
+      margin-right: 19px;
     }
 
     dt {
@@ -34,12 +53,20 @@
 <body>
   <header>
     <div class="container">
-      <h1>My planish</h1>
+      <div class="promo">
+        <h1 class="promo-title">My planish</h1>
+        <img class="promo-img" src="images/bicycle.svg" width="48" height="48" alt="bicycle">
+      </div>
+      <nav class="main-header-nav">
+        <div class="nav-wrapper">
+          <a class="history-nav-link" href="pages/history.html">Посмотрите на наш рост</a>
+          <img class="history-nav-img" src="images/growth.svg" width="24" height="24" alt="growth">
+        </div>
+      </nav>
     </div>
   </header>
 
   <main>
-    <h2 style="display: none;">О нас</h2>
     <section class="description">
       <div class="container">
         <p><strong>MyPlanish</strong> - популярная платформа для повышения производительности,
@@ -56,33 +83,52 @@
     </section>
     <section class="reviews">
       <div class="container">
-        <ul>
-          <li>
-            <dl>
-              <dt>Yulia</dt>
-              <dd>MyPlanish оказался очень удобным, интуитивно понятное, быстрый ввод задач, красивые
-                всплывающие уведомления о событиях. Однозначно рекомендую, очень понравилось!</dd>
+        <h2 class="reviews-title">Отзывы</h2>
+        <ul class="reviews-list">
+          <li class="reviews-list-item">
+            <dl class="reviews-list-container">
+              <dt class="reviews-list-item-title">Alua</dt>
+              <dd class="reviews-list-item-description">
+                <p>MyPlanish оказался очень удобным. Интуитивно понятный, быстрый ввод задач, красивые
+                  всплывающие уведомления о событиях. Однозначно рекомендую, очень понравилось!</p>
+              </dd>
             </dl>
           </li>
-          <li>
-            <dt>Alua</dt>
-            <dd>Круто, было бы лучше если добавить напоминалку на каждый день чтобы отроботать привычку.
-              Или добавить еженедельную рутину, например каждый вторник делать упражнения.</dd>
+          <li class="reviews-list-item">
+            <dl class="reviews-list-container">
+              <dt class="reviews-list-item-title">Yulia</dt>
+              <dd class="reviews-list-item-description">
+                <p>Круто! Было бы лучше, если добавить напоминалку на каждый день, чтобы отроботать привычку.
+                  Например, каждый вторник делать упражнения.</p>
+              </dd>
+            </dl>
           </li>
-          <li>
-            <dt>Artur</dt>
-            <dd>Хорошее приложение, выполненное в минималистичном виде: ничего лишнего, но, лично мне,
-              хватает всего. Рекомендую приложение для управления своими задачами.</dd>
+          <li class="reviews-list-item">
+            <dl class="reviews-list-container">
+              <dt class="reviews-list-item-title">Stanislav</dt>
+              <dd class="reviews-list-item-description">
+                <p>Хорошее приложение, выполненное в минималистичном виде: ничего лишнего. Мне
+                  хватает всего. Рекомендую приложение для управления своими задачами.</p>
+              </dd>
+            </dl>
           </li>
-          <li>
-            <dt>Stanislav</dt>
-            <dd>Начал пользоваться, все нравится. Под мои повседневные дела подходит полностью. Лёгкий
-              дизайн, работает шустро. Это 5 баллов.</dd>
+          <li class="reviews-list-item">
+            <dl class="reviews-list-container">
+              <dt class="reviews-list-item-title">Artur</dt>
+              <dd class="reviews-list-item-description">
+                <p>Начал пользоваться, все нравится. Под мои повседневные дела подходит полностью. Лёгкий
+                  дизайн, работает шустро. Это 5 баллов.</p>
+              </dd>
+            </dl>
           </li>
-          <li>
-            <dt>Eva</dt>
-            <dd>Очень хорошо, красиво, нет навязанных внутренних покупок и ничего отвлекающего, меня
-              лично всё устраивает</dd>
+          <li class="reviews-list-item">
+            <dl class="reviews-list-container">
+              <dt class="reviews-list-item-title">Katya</dt>
+              <dd class="reviews-list-item-description">
+                <p>Очень хорошо, красиво, нет навязанных внутренних покупок и ничего отвлекающего.
+                  Всё устраивает пока что.</p>
+              </dd>
+            </dl>
           </li>
         </ul>
       </div>
@@ -97,6 +143,14 @@
     </div>
   </footer>
 
+  <script>
+    let reviews = document.querySelectorAll(".reviews-list-item-description");
+    reviews.forEach((review) => {
+      for (let i = 0; i < 5; i++) {
+        review.insertAdjacentHTML('afterbegin', '<img class="reviews-list-item-description-img" src="images/gradle.svg" width="24" height="24" alt="gradle">');
+      }
+    });
+  </script>
 </body>
 
 </html>
