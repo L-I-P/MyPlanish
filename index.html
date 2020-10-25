@@ -11,23 +11,28 @@
       color: rgb(0, 0, 0);
       list-style: none;
       padding: 0;
+      opacity: 0;
+    }
+
+    ul:hover {
+      opacity: 1;
     }
 
     li {
       display: inline-block;
       width: 200px;
       vertical-align: top;
-
-      opacity: 0;
+      color: #000000;
+      
       transition: opacity 0.5s ease-in-out;
     }
 
-    li:not(:last-child) {
+    ul li:not(:last-child) {
       margin-right: 19px;
     }
 
-    li:hover {
-      opacity: 1;
+    #reviews-list-item-last {
+      margin-right: 0;
     }
 
     .reviews-show-btn {
@@ -120,7 +125,7 @@
               </dd>
             </dl>
           </li>
-          <li class="reviews-list-item">
+          <li id="reviews-list-item-last" class="reviews-list-item">
             <dl class="reviews-list-container">
               <dt class="reviews-list-item-title">Katya</dt>
               <dd class="reviews-list-item-description">
