@@ -5,26 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
   <title>My Planish - Главная</title>
+  <link rel="stylesheet" href="css/style.css">
   <style type="text/css">
-    body {
-      min-width: 1160px;
-      margin: 0;
-      padding: 0;
-      font-family: "Work Sans", "Arial", sans-serif;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 21px;
-      color: #151C22;
-    }
-
-    .container {
-      width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 40px;
-    }
-
     ul {
+      color: rgb(0, 0, 0);
       list-style: none;
       padding: 0;
     }
@@ -33,15 +17,29 @@
       display: inline-block;
       width: 200px;
       vertical-align: top;
+
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
 
     li:not(:last-child) {
       margin-right: 19px;
     }
 
+    li:hover {
+      opacity: 1;
+    }
+
+    .reviews-show-btn {
+      background-color: antiquewhite;
+      padding: 10px;
+      border: 2px solid black;
+      border-radius: 15px;
+    }
+
     dt {
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 10px;  
     }
 
     dd {
@@ -69,6 +67,7 @@
   <main>
     <section class="description">
       <div class="container">
+        <h2 style="visibility: hidden;">О нас</h2>
         <p><strong>MyPlanish</strong> - популярная платформа для повышения производительности,
           призванная помочь людям оставаться организованными и делать больше.</p>
         <p>MyPlanish позволяет вам создать профиль с фотографией и информацией о себе, приглашать друзей,
@@ -144,8 +143,8 @@
   </footer>
 
   <script>
-    let reviews = document.querySelectorAll(".reviews-list-item-description");
-    reviews.forEach((review) => {
+    let reviewsListItemDescription = document.querySelectorAll(".reviews-list-item-description");
+    reviewsListItemDescription.forEach((review) => {
       for (let i = 0; i < 5; i++) {
         review.insertAdjacentHTML('afterbegin', '<img class="reviews-list-item-description-img" src="images/gradle.svg" width="24" height="24" alt="gradle">');
       }
