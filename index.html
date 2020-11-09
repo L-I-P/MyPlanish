@@ -11,11 +11,6 @@
       color: rgb(0, 0, 0);
       list-style: none;
       padding: 0;
-      opacity: 0;
-    }
-
-    ul:hover {
-      opacity: 1;
     }
 
     li {
@@ -24,7 +19,6 @@
       vertical-align: top;
       color: #000000;
       
-      transition: opacity 0.5s ease-in-out;
     }
 
     ul li:not(:last-child) {
@@ -51,6 +45,11 @@
       margin: 0;
     }
   </style>
+  <script>
+    const changeSizePromoTitle = (newSize) => {
+      document.querySelector('.promo-title').style.fontSize = newSize + 'px';
+    };
+  </script>
 </head>
 
 <body>
@@ -59,6 +58,21 @@
       <div class="promo">
         <h1 class="promo-title">My planish</h1>
         <img class="promo-img" src="images/bicycle.svg" width="48" height="48" alt="bicycle">
+        <p>
+          <label>Цвет Заголовка:
+            <select id="colorPromoTitle">
+              <option value="black">Black</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+            </select>
+          </label>
+        </p>
+        <p>
+          <label>Размер
+            <input type="range" min="5" max="100" step="1" oninput="changeSizePromoTitle(this.value)">
+          </label>
+        </p>
       </div>
       <nav class="main-header-nav">
         <div class="nav-wrapper">
@@ -72,7 +86,7 @@
   <main>
     <section class="description">
       <div class="container">
-        <h2 style="visibility: hidden;">О нас</h2>
+        <h2 style="display: none;">О нас</h2>
         <p><strong>MyPlanish</strong> - популярная платформа для повышения производительности,
           призванная помочь людям оставаться организованными и делать больше.</p>
         <p>MyPlanish позволяет вам создать профиль с фотографией и информацией о себе, приглашать друзей,
@@ -143,6 +157,11 @@
 
   <footer>
     <div class="container">
+      <div class="footer-navigation">
+        <a href="pages/solutionOfTheProblem.html" style="text-decoration: none; color: black;">Решение задачи</a>
+      </div>
+      <buttton id="aboutDev">Об авторе</buttton>
+      <p id="time"></p>
       <p>© 2020 L-I-P</p>
     </div>
   </footer>
@@ -154,6 +173,28 @@
         review.insertAdjacentHTML('afterbegin', '<img class="reviews-list-item-description-img" src="images/gradle.svg" width="24" height="24" alt="gradle">');
       }
     });
+
+    let t = document.getElementById('time');
+    let d = new Date(); // for now
+    let hour = d.getHours();
+    if(hour.toString().length == 1) {
+      hour = '0' + hour;
+    }
+      
+    let minute = d.getMinutes();
+    let colorMinute = (minute % 2 === 0 ? '<span style="color: red;">' : '<span style="color: blue;">');
+    if(minute.toString().length == 1) {
+      minute = '0' + minute;
+    } 
+    colorMinute += minute + '</span>';
+
+    t.innerHTML = 'Текущее время: ' + hour + ':' + colorMinute;
+
+    colorPromoTitle.onchange = () => {
+      document.querySelector('.promo-title').style.color = colorPromoTitle.value;
+    };
+
+    aboutDev.onclick = () => alert('Бережных Н.С. 4736');
   </script>
 </body>
 

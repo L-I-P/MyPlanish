@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Основы JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Задача</h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <h2>Найти порядковый номер того, которое ближе всего к какому-нибудь целому числу</h2>
+        <div id="result"></div>
+
+        <form id="solution-form" style="width: 250px;">
+
+          <input type="button" id="solutionBtn" value="Посчитать" style="margin-top: 10px;">
+          <input type="button" id="clearBtn" value="Очистить" style="margin-top: 10px;">
+        </form>
+      </div>
+    </main>
+    
+    <footer>
+      <div class="container">
+        <div class="footer-navigation">
+          <a href="../index.html" style="text-decoration: none; color: black;">На главную</a>
+        </div>
+      </div>
+    </footer>
+      
+    <script>
+
+      for (let i = 20; i > 0; i--) {
+        document.getElementById('solution-form').insertAdjacentHTML('afterbegin', 
+          '<input type="number" name="elementOfArray" step="0.01" value="0.0' + i + '" style="width: 50px">');
+      }
+
+      solutionBtn.onclick = () => {
+        arrayOfNumbers = [];
+
+        let solutionFormElements = document.getElementsByName('elementOfArray');
+
+        for (let i = 0; i < solutionFormElements.length - 2; i++) {
+          if(solutionFormElements[i].value !== '') arrayOfNumbers.push(solutionFormElements[i].value);
+        }
+
+        let serialNum = 0; // порядковый номер (serialNum + 1)
+        let curDifOfNum = 1; // наименьшая разница числа до ближайшего целого
+
+        for (let i = 0; i < arrayOfNumbers.length; i++) {
+          if (arrayOfNumbers[i] - Math.floor(arrayOfNumbers[i]) < curDifOfNum) { // floor - округление вниз
+            serialNum = i;
+            curDifOfNum = arrayOfNumbers[i] - Math.floor(arrayOfNumbers[i]);
+          }
+          if (Math.ceil(arrayOfNumbers[i]) - arrayOfNumbers[i]  < curDifOfNum) { // ceil - окгругление вверх
+            serialNum = i;
+            curDifOfNum = Math.ceil(arrayOfNumbers[i]) - arrayOfNumbers[i];
+          }
+        }
+
+        serialNum++;
+
+        document.getElementById('result').innerHTML = '<p>Получен массив: ' + arrayOfNumbers.join(" ") + 
+        '</p><p>Порядковый номер числа, которое ближе всего к какому-нибудь целому числу: ' + serialNum + '</p>';
+      };
+      
+      clearBtn.onclick = () => {
+        let solutionFormElements = document.getElementById('solution-form').elements;
+
+        for (let i = 0; i < solutionFormElements.length - 2; i++) {
+          solutionFormElements[i].value = '';
+        }
+
+        document.getElementById('result').innerHTML = '';
+      };
+    </script>
+  </body>
+</html>

@@ -20,6 +20,12 @@
       background-color: bisque;
     }
   </style>
+  <script>
+    const deleteRow = (btn) => {
+    var row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+  </script>
 </head>
 
 <body>
@@ -39,44 +45,58 @@
   <main>
     <section class="history">
         <div class="container">
-          <table>
+          <table id="historyTable">
             <tr>
               <th>Год</th>
               <th>Событие</th>
+              <th></th>
             </tr>
             <tr>
               <td>2020</td>
               <td>12 декаября состоялась презентация продукта.</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
             <tr>
               <td>2021</td>
               <td>28 февраля появилась возможность оставлять комментарии под записями других пользователей.</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
             <tr>
               <td>2021</td>
               <td>21 мая был представлен новый интерфейс, написанный с нуля.</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
             <tr>
               <td>2022</td>
               <td>23 августа утечка данных пользователей, которые участвовали в тестировании.</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
             <tr>
               <td>2022</td>
               <td>25 августа внедрили двухэтапную аутентификацию.</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
             <tr>
               <td>2022</td>
               <td>С 23 марта появилась функция подтверждения профилей популярных пользователей</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
             <tr>
               <td>2022</td>
               <td>13 января добавлена возможность архивировать записи.</td>
+              <td><input type="button" value="Удалить" onclick="deleteRow(this)"/></td>
             </tr>
-            <tr>
+            <!--<tr>
               <td colspan="2">
                 <img src="../images/edit.svg" width="24" height="24" alt="edit"> История пишется ...</td>
-            </tr>
+            </tr>-->
           </table>
+          <form name="addHistory">
+            <input type="number" step="1" name="year" placeholder="Год">
+            <input type="text" name="event" placeholder="Событие">
+
+            <input type="button" id="addRow" value="Добавить">
+          </form>
         </div>
     </section>
   </main>
@@ -86,6 +106,22 @@
       <p>© 2020 L-I-P</p>
     </div>
   </footer>
+
+  <script>
+    addRow.onclick = () => {
+      let form =  document.forms.addHistory;
+
+      let table = document.getElementById("historyTable");
+      let row = table.insertRow(-1);
+      let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(1);
+      let cell3 = row.insertCell(2);
+
+      cell1.innerHTML = form.elements.year.value;
+      cell2.innerHTML = form.elements.event.value;
+      cell3.innerHTML = '<input type="button" value="Удалить" onclick="deleteRow(this)"/>';
+    };
+  </script>
 </body>
 
 </html>
